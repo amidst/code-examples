@@ -6,6 +6,7 @@ import org.junit.Test;
 public class DynamicParallelVMPExtendedTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		DynamicParallelVMPExtended.main(null);
+		String[] args = {"0", "10", "100", "100", "100", "100", "3", "0", "true"};
+		DynamicParallelVMPExtended.main(args);
 	}
 }

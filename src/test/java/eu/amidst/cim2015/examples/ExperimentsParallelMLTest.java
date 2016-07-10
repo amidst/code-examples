@@ -6,6 +6,9 @@ import org.junit.Test;
 public class ExperimentsParallelMLTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		ExperimentsParallelML.main(null);
+
+		String args[] = {"-pathToFile", "./datasets/simulated/syntheticData.arff", "-coreComparison", "false"};
+		//ExperimentsParallelML.main(args);
+        ExperimentsParallelML.compareBatchSizes();
 	}
 }

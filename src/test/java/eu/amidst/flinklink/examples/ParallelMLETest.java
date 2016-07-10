@@ -6,6 +6,8 @@ import org.junit.Test;
 public class ParallelMLETest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		ParallelMLE.main(null);
+
+		String args[] = {"./networks/simulated/WasteIncinerator.bn", "1000"};
+		ParallelMLE.main(args);
 	}
 }

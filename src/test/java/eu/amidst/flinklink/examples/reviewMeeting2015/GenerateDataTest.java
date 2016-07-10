@@ -6,6 +6,11 @@ import org.junit.Test;
 public class GenerateDataTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		GenerateData.main(null);
+
+
+		String args[] = {"3","2000", "5", "false"};
+
+
+		GenerateData.main(args);
 	}
 }

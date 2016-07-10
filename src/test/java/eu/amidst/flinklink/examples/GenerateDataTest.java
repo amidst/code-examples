@@ -6,6 +6,9 @@ import org.junit.Test;
 public class GenerateDataTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		GenerateData.main(null);
+
+		String args[] = {"networks/simulated/WasteIncinerator.bn","100"};
+
+		GenerateData.main(args);
 	}
 }

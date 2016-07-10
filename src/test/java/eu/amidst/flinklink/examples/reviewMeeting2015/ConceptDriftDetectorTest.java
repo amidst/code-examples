@@ -6,6 +6,7 @@ import org.junit.Test;
 public class ConceptDriftDetectorTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		ConceptDriftDetector.main(null);
+		String args[] = {"2"};
+		ConceptDriftDetector.main(args);
 	}
 }

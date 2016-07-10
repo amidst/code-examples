@@ -6,6 +6,7 @@ import org.junit.Test;
 public class DynamicDataSetsTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		DynamicDataSets.main(null);
+		String[] args = {"0", "0", "100", "10", "3", "0"};
+		DynamicDataSets.main(args);
 	}
 }

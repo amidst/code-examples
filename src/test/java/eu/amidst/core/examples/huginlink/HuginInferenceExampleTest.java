@@ -6,6 +6,12 @@ import org.junit.Test;
 public class HuginInferenceExampleTest extends TestCase  {
 	@Test
 	public void test() throws Exception {
-		HuginInferenceExample.main(null);
+		try {
+			HuginInferenceExample.main(null);
+		}catch (UnsatisfiedLinkError err) {
+
+		}catch (NoClassDefFoundError ex) {
+
+		}
 	}
 }
