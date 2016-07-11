@@ -121,13 +121,15 @@ public class ParallelVMPExtended {
         int seed = Integer.parseInt(args[6]);
 
         //Set-up Flink session.
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
         /*
          * Logging
          */
-        BasicConfigurator.configure();
+       // BasicConfigurator.configure();
+        env.getConfig().disableSysoutLogging();
         //PropertyConfigurator.configure(args[7]);
+
 
         String fileName = "./datasets/simulated/tmp"+nCVars+"_"+nMVars+"_"+nSamples+"_"+windowSize+"_"+globalIter+"_"+localIter+".arff";
         //String fileName = "./datasets/tmp"+nCVars+"_"+nMVars+"_"+nSamples+"_"+windowSize+"_"+globalIter+"_"+localIter+".arff";
@@ -164,6 +166,7 @@ public class ParallelVMPExtended {
         parallelVB.setLocalThreshold(0.1);
         parallelVB.setMaximumLocalIterations(localIter);
         parallelVB.setSeed(5);
+        parallelVB.setOutput(false);
 
         //Set the window size
         parallelVB.setBatchSize(windowSize);

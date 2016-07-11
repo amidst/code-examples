@@ -38,7 +38,8 @@ public class ParallelVMP {
 
 
         //Set-up Flink session.
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        env.getConfig().disableSysoutLogging();
 
         // load the true Asia Bayesian network
         BayesianNetwork originalBnet = BayesianNetworkLoader.loadFromFile(args[0]);
