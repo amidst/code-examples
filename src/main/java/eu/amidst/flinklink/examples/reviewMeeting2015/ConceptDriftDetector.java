@@ -17,11 +17,13 @@
 
 package eu.amidst.flinklink.examples.reviewMeeting2015;
 
+import eu.amidst.Main;
 import eu.amidst.core.datastream.DataInstance;
 import eu.amidst.flinklink.core.conceptdrift.IDAConceptDriftDetector;
 import eu.amidst.flinklink.core.data.DataFlink;
 import eu.amidst.flinklink.core.io.DataFlinkLoader;
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.configuration.Configuration;
 
 /**
  * Created by ana@cs.aau.dk on 18/01/16.
@@ -32,7 +34,12 @@ public class ConceptDriftDetector {
 
 
     public static void learnIDAConceptDriftDetector(int NSETS) throws Exception {
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        //Set-up Flink session.
+        Configuration conf = new Configuration();
+        conf.setInteger("taskmanager.network.numberOfBuffers", 12000);
+        final ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment(conf);
+        env.getConfig().disableSysoutLogging();
+        env.setParallelism(Main.PARALLELISM);
 
       //  DataFlink<DataInstance> data0 = DataFlinkLoader.loadDataFromFolder(env,
       //          "hdfs:///tmp_conceptdrift_data0.arff", false);
