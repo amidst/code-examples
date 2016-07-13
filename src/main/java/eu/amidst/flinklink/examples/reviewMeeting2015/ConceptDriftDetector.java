@@ -45,18 +45,21 @@ public class ConceptDriftDetector {
       //          "hdfs:///tmp_conceptdrift_data0.arff", false);
 
           DataFlink<DataInstance> data0 = DataFlinkLoader.open(env,
-                  "./datasets/DriftSets/sea.arff", false);
+                  "./datasets/simulated/tmp_conceptdrift_data0.arff", false);
 
         long start = System.nanoTime();
         IDAConceptDriftDetector learn = new IDAConceptDriftDetector();
         learn.setBatchSize(1000);
-        learn.setClassIndex(3);
+        learn.setClassIndex(0);
         learn.setAttributes(data0.getAttributes());
         learn.setNumberOfGlobalVars(1);
         learn.setTransitionVariance(0.1);
         learn.setSeed(0);
 
         learn.initLearning();
+
+        System.out.println(learn.getGlobalDAG().toString());
+
         double[] output = new double[NSETS];
 
         System.out.println("--------------- LEARNING DATA " + 0 + " --------------------------");
@@ -67,7 +70,7 @@ public class ConceptDriftDetector {
         for (int i = 1; i < NSETS; i++) {
             System.out.println("--------------- LEARNING DATA " + i + " --------------------------");
             DataFlink<DataInstance> dataNew = DataFlinkLoader.open(env,
-                    "./datasets/DriftSets/sea.arff", false);
+                    "./datasets/simulated/tmp_conceptdrift_data"+i+".arff", false);
             out = learn.updateModelWithNewTimeSlice(dataNew);
             //System.out.println(learn.getLearntDynamicBayesianNetwork());
             output[i] = out[0];

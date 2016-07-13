@@ -134,7 +134,12 @@ public class GenerateData {
 
     public static void createDataSetsDBN(List<String> hiddenVars, List<String> noisyVars, int numVars, int SAMPLESIZE,
                                          int NSETS) throws Exception {
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        //Set-up Flink session.
+        Configuration conf = new Configuration();
+        conf.setInteger("taskmanager.network.numberOfBuffers", 12000);
+        final ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment(conf);
+        env.getConfig().disableSysoutLogging();
+        env.setParallelism(Main.PARALLELISM);
 
         DynamicBayesianNetwork dbn = createDBN1(numVars);
 
