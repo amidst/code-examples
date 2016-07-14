@@ -1,0 +1,4 @@
+@attribute C 0 {0.0, 1.0}
+@attribute A0 1 real
+@attribute A1 2 real
+@attribute A2 3 real
